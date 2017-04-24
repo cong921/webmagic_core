@@ -79,9 +79,14 @@ public class FilePipeline extends FilePersistentBase implements Pipeline {
 				String Source=mapToString(json,"Source");
 				Statement createStatement = conn.createStatement();
 				for (int i = 0; i < list.size()/7; i++) {
-//					System.out.println("INSERT INTO `spider`.`taxes` (`id`, `Company`, `Type`, `Num`, `Name`, `Idtype`, `Id_num`, `Address`, `Tax`, `Amount`, `Camount`, `Debt`, `Detail`, `Url`, `Time`, `Period`, `Source`, `label`, `hash_md5`, `Updated`) VALUES (null,"+"'"+list.get(1)+"',NULL,"+"'"+list.get(0+i*7)+"','"+list.get(2+i*7)+"',NULL,'"+list.get(3+i*7)+"','"+list.get(4+i*7)+"','"+list.get(5+i*7)+"','"+list.get(6+i*7)+"',NULL,NULL,NULL,'"+url+"','"+Time+"','"+Period+"','"+Source+"','"+"天津国税"+"',NULL,"+"NOW()"+");");
+					System.out.println("INSERT INTO `spider`.`taxes` (`id`, `Company`, `Type`, `Num`, `Name`, `Idtype`, `Id_num`, `Address`, `Tax`, `Amount`, `Camount`, `Debt`, `Detail`, `Url`, `Time`, `Period`, `Source`, `label`, `hash_md5`, `Updated`) VALUES (null,"+"'"+list.get(1)+"',NULL,"+"'"+list.get(0+i*7)+"','"+list.get(2+i*7)+"',NULL,'"+list.get(3+i*7)+"','"+list.get(4+i*7)+"','"+list.get(5+i*7)+"','"+list.get(6+i*7)+"',NULL,NULL,NULL,'"+url+"','"+Time+"','"+Period+"','"+Source+"','"+"天津国税"+"',NULL,"+"NOW()"+");");
 					//																																																																	INSERT INTO `spider`.`taxes` (`id`, `Company`, `Type`, `Num`, `Name`, `Idtype`, `Id_num`, `Address`, `Tax`, `Amount`, `Camount`, `Debt`, `Detail`, `Url`, `Time`, `Period`, `Source`, `label`, `hash_md5`, `Updated`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 					createStatement.execute("INSERT INTO `spider`.`taxes` (`id`, `Company`, `Type`, `Num`, `Name`, `Idtype`, `Id_num`, `Address`, `Tax`, `Amount`, `Camount`, `Debt`, `Detail`, `Url`, `Time`, `Period`, `Source`, `label`, `hash_md5`, `Updated`) VALUES (null,"+"'"+list.get(1+i*7)+"',NULL,"+"'"+list.get(0+i*7)+"','"+list.get(2+i*7)+"',NULL,'"+list.get(3+i*7)+"','"+list.get(4+i*7)+"','"+list.get(5+i*7)+"',NULL,NULL,'"+list.get(6+i*7)+"',NULL,'"+url+"','"+Time+"','"+Period+"','"+Source+"','"+"天津国税"+"',NULL,"+"NOW()"+");");
+					if(i<list.size()/7&&list.get(18+i*7).matches("\\d\\+(\\.)*\\d+")){
+						list.remove(5+i*7);
+						list.remove(6+i*7);
+						--i;
+					}
 				}
 				/*Map<String,String> map=new HashMap<String, String>();
 				for (String str : json.keySet()) {
