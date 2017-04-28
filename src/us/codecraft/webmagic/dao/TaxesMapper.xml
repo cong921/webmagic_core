@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="us.codecraft.webmagic.dao.TaxesMapper" >
+  <resultMap id="BaseResultMap" type="us.codecraft.webmagic.domain.Taxes" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idtype" property="idtype" jdbcType="VARCHAR" />
+    <result column="id_num" property="idNum" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="tax" property="tax" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="VARCHAR" />
+    <result column="camount" property="camount" jdbcType="VARCHAR" />
+    <result column="debt" property="debt" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="hash_md5" property="hashMd5" jdbcType="CHAR" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="us.codecraft.webmagic.domain.Taxes" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company, type, num, name, idtype, id_num, address, tax, amount, camount, debt, 
+    time, period, source, label, hash_md5, updated
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="us.codecraft.webmagic.domain.TaxesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from taxes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="us.codecraft.webmagic.domain.TaxesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from taxes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from taxes
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from taxes
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="us.codecraft.webmagic.domain.TaxesExample" >
+    delete from taxes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="us.codecraft.webmagic.domain.Taxes" >
+    insert into taxes (id, company, type, 
+      num, name, idtype, 
+      id_num, address, tax, 
+      amount, camount, debt, 
+      time, period, source, 
+      label, hash_md5, updated, 
+      detail)
+    values (#{id,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{num,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{idtype,jdbcType=VARCHAR}, 
+      #{idNum,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{tax,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=VARCHAR}, #{camount,jdbcType=VARCHAR}, #{debt,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{period,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR}, #{hashMd5,jdbcType=CHAR}, #{updated,jdbcType=TIMESTAMP}, 
+      #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="us.codecraft.webmagic.domain.Taxes" >
+    insert into taxes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idtype != null" >
+        idtype,
+      </if>
+      <if test="idNum != null" >
+        id_num,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="tax != null" >
+        tax,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="camount != null" >
+        camount,
+      </if>
+      <if test="debt != null" >
+        debt,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="hashMd5 != null" >
+        hash_md5,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idtype != null" >
+        #{idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="idNum != null" >
+        #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tax != null" >
+        #{tax,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="camount != null" >
+        #{camount,jdbcType=VARCHAR},
+      </if>
+      <if test="debt != null" >
+        #{debt,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="hashMd5 != null" >
+        #{hashMd5,jdbcType=CHAR},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="us.codecraft.webmagic.domain.TaxesExample" resultType="java.lang.Integer" >
+    select count(*) from taxes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update taxes
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null" >
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idtype != null" >
+        idtype = #{record.idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNum != null" >
+        id_num = #{record.idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tax != null" >
+        tax = #{record.tax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.camount != null" >
+        camount = #{record.camount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.debt != null" >
+        debt = #{record.debt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=VARCHAR},
+      </if>
+      <if test="record.period != null" >
+        period = #{record.period,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.label != null" >
+        label = #{record.label,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hashMd5 != null" >
+        hash_md5 = #{record.hashMd5,jdbcType=CHAR},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.detail != null" >
+        detail = #{record.detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update taxes
+    set id = #{record.id,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      idtype = #{record.idtype,jdbcType=VARCHAR},
+      id_num = #{record.idNum,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      tax = #{record.tax,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=VARCHAR},
+      camount = #{record.camount,jdbcType=VARCHAR},
+      debt = #{record.debt,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      period = #{record.period,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      label = #{record.label,jdbcType=VARCHAR},
+      hash_md5 = #{record.hashMd5,jdbcType=CHAR},
+      updated = #{record.updated,jdbcType=TIMESTAMP},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update taxes
+    set id = #{record.id,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      idtype = #{record.idtype,jdbcType=VARCHAR},
+      id_num = #{record.idNum,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      tax = #{record.tax,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=VARCHAR},
+      camount = #{record.camount,jdbcType=VARCHAR},
+      debt = #{record.debt,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
+      period = #{record.period,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      label = #{record.label,jdbcType=VARCHAR},
+      hash_md5 = #{record.hashMd5,jdbcType=CHAR},
+      updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="us.codecraft.webmagic.domain.Taxes" >
+    update taxes
+    <set >
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idtype != null" >
+        idtype = #{idtype,jdbcType=VARCHAR},
+      </if>
+      <if test="idNum != null" >
+        id_num = #{idNum,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="tax != null" >
+        tax = #{tax,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="camount != null" >
+        camount = #{camount,jdbcType=VARCHAR},
+      </if>
+      <if test="debt != null" >
+        debt = #{debt,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="hashMd5 != null" >
+        hash_md5 = #{hashMd5,jdbcType=CHAR},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="us.codecraft.webmagic.domain.Taxes" >
+    update taxes
+    set company = #{company,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idtype = #{idtype,jdbcType=VARCHAR},
+      id_num = #{idNum,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tax = #{tax,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      camount = #{camount,jdbcType=VARCHAR},
+      debt = #{debt,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      period = #{period,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      hash_md5 = #{hashMd5,jdbcType=CHAR},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="us.codecraft.webmagic.domain.Taxes" >
+    update taxes
+    set company = #{company,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idtype = #{idtype,jdbcType=VARCHAR},
+      id_num = #{idNum,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      tax = #{tax,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      camount = #{camount,jdbcType=VARCHAR},
+      debt = #{debt,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      period = #{period,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      hash_md5 = #{hashMd5,jdbcType=CHAR},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

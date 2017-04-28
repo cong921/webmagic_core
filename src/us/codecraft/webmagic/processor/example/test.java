@@ -16,7 +16,13 @@ public class test {
 		for (int i = 0; i < s.length; i++) {
 			list.add(s[i]);
 		}*/
-		boolean matches = "http://wzcx.tjsat.gov.cn/ssggcx.action?cxgglx=8".matches("http://wzcx\\.tjsat\\.gov\\.cn/ssxxggcx\\.action?cxgglx=\\d+");
+//		boolean matches = "http://wzcx.tjsat.gov.cn/ssggcx.action?cxgglx=8".matches("http://wzcx\\.tjsat\\.gov\\.cn/ssxxggcx\\.action?cxgglx=\\d+");
+//		boolean matches = "天津市博文特科技发展有限公司".matches("[\u4e00-\u9fa5]+");
+		int i=24;
+		boolean endsWith = String.valueOf("i").endsWith("4");
+		System.out.println(endsWith);
+		boolean matches = "居民身份证".matches("居民身份证");
+		System.out.println(Math.ceil(95/10.0));
 		System.out.println(matches);
 		// boolean startsWith = s1.startsWith("附件");
 		// System.out.println(startsWith);

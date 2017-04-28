@@ -17,9 +17,9 @@ public class ConsolePipeline implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
 //        System.out.println("get page: " + resultItems.getRequest().getUrl());
-    	System.out.println(resultItems);
+//    	System.out.println(resultItems);
         for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
-            System.out.println(entry.getKey() + ":\t" + entry.getValue());
+//            System.out.println(entry.getKey() + ":\t" + entry.getValue());
         }
     }
 }

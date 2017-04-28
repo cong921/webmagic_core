@@ -49,5 +49,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xsoup-0.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis-3.2.7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

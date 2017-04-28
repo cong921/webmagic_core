@@ -321,6 +321,7 @@ public class Spider implements Runnable, Task {
                             processRequest(requestFinal);
                             onSuccess(requestFinal);
                         } catch (Exception e) {
+                        	System.out.println(e);
                             onError(requestFinal);
                             logger.error("process request " + requestFinal + " error", e);
                         } finally {
