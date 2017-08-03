@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -41,18 +39,18 @@ import us.codecraft.webmagic.utils.FilePersistentBase;
  * @since 0.1.0
  */
 @ThreadSafe
-public class FilePipeline extends FilePersistentBase implements Pipeline {
+public class DowloadGifPipeline extends FilePersistentBase implements Pipeline {
 	
     private Logger logger = LoggerFactory.getLogger(getClass());
     private static ConnectionPool connectionPool=new ConnectionPool("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/spider", "root", "root");
     /**
      * create a FilePipeline with default path"/data/webmagic/"
      */
-    public FilePipeline() {
+    public DowloadGifPipeline() {
         setPath("/data/webmagic/");
     }
 
-    public FilePipeline(String path) {
+    public DowloadGifPipeline(String path) {
         setPath(path);
     }
 

@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
+import us.codecraft.webmagic.domain.Exchange;
+import us.codecraft.webmagic.domain.SuperBean;
 import us.codecraft.webmagic.domain.Taxes;
 
 public abstract class SqlsessionInsert {
@@ -41,7 +43,5 @@ public abstract class SqlsessionInsert {
 		this.sqlSession.close();
 	}
 	public abstract  void domethod();
-	public void setList(List<Taxes> list1) {
-		
-	}
+	public abstract void setList(List<Exchange> list1) ;
 }

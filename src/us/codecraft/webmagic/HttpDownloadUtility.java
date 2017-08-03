@@ -6,15 +6,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.apache.log4j.chainsaw.Main;
  
 /**
  * A utility that downloads a file from a URL.
  * @author www.codejava.net
  *
  */
-public class HttpDownloadUtility {
+public class HttpDownloadUtility implements Runnable {
     private static final int BUFFER_SIZE = 4096;
- 
     /**
      * Downloads a file from a URL
      * @param fileURL HTTP URL of the file to be downloaded
@@ -54,7 +55,7 @@ public class HttpDownloadUtility {
  
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
-            String saveFilePath = saveDir + File.separator + fileName;
+            String saveFilePath = saveDir + File.separator + "ABC.zip";
              
             // opens an output stream to save into file
             FileOutputStream outputStream = new FileOutputStream(saveFilePath);
@@ -74,4 +75,23 @@ public class HttpDownloadUtility {
         }
         httpConn.disconnect();
     }
+    
+    public static void main(String[] args) {
+    	try {
+    		long currentTimeMillis = System.currentTimeMillis();
+			HttpDownloadUtility.downloadFile("http://www.xdowns.com/soft/xdowns2009.asp?softid=98183&downid=10&id=100146","e:/abc");
+			long currentTimeMillis2 = System.currentTimeMillis();
+			System.out.println(currentTimeMillis2-currentTimeMillis);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		
+		
+	}
+    
 }

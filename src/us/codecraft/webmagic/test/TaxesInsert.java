@@ -3,6 +3,7 @@ package us.codecraft.webmagic.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import us.codecraft.webmagic.domain.Exchange;
 import us.codecraft.webmagic.domain.Taxes;
 
 public class TaxesInsert extends SqlsessionInsert {
@@ -12,9 +13,6 @@ public class TaxesInsert extends SqlsessionInsert {
 		return list;
 	}
 
-	public void setList(List<Taxes> list) {
-		this.list = list;
-	}
 
 	@Override
 	public void domethod() {
@@ -24,4 +22,24 @@ public class TaxesInsert extends SqlsessionInsert {
 		
 	}
 
+
+	@Override
+	public void setList(List<Exchange> list1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+/*	@Override
+	public void setList(List<? extends Object> list1) {
+		this.list=list;
+		
+	}
+
+
+	@Override
+	public void setList(List<Exchange> list1) {
+		// TODO Auto-generated method stub
+		
+	}
+*/
 }
